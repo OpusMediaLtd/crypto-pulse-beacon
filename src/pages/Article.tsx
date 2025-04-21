@@ -1,4 +1,3 @@
-
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPostBySlug, fetchRelatedPosts } from "@/services/api";
@@ -69,11 +68,11 @@ const Article = () => {
                 <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
               </div>
               
-              <AdSlot placement="article_inline_1" className="my-8" />
+              <AdSlot placement="inline" className="my-8" />
 
               <div dangerouslySetInnerHTML={{ __html: post.content.rendered.split('</p>')[0] + '</p>' }} />
               
-              <AdSlot placement="article_inline_2" className="my-8" />
+              <AdSlot placement="inline" className="my-8" />
               
               <SocialShare title={post.title.rendered} url={currentUrl} />
             </article>

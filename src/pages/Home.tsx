@@ -49,8 +49,8 @@ const Home = () => {
           <div className="sticky top-6">
             <h2 className="text-xl font-bold mb-4">Sponsored</h2>
             <div className="space-y-6">
-              <AdSlot placement="home_sidebar_1" />
-              <AdSlot placement="home_sidebar_2" />
+              <AdSlot placement="sidebar" />
+              <AdSlot placement="sidebar" />
             </div>
           </div>
         </div>
