@@ -11,6 +11,7 @@ const CasinoList = () => {
   const { data: casinos, isLoading, error } = useQuery({
     queryKey: ["casinos"],
     queryFn: fetchCasinos,
+    retry: 2,
   });
 
   if (error) {
@@ -54,3 +55,4 @@ const CasinoList = () => {
 };
 
 export default CasinoList;
+
