@@ -43,7 +43,7 @@ export async function fetchRelatedPosts(tagIds: number[], currentPostId: number)
   return posts.filter(post => post.id !== currentPostId).slice(0, 3);
 }
 
-// Function to fetch all ads
+// Base function to fetch all ads
 async function fetchAllAds(): Promise<Ad[]> {
   return fetchWithCache<Ad[]>(`${WP_API_URL}/ad`);
 }
