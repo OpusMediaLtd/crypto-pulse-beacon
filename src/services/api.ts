@@ -51,10 +51,18 @@ export async function fetchAdsByPlacement(placement: string): Promise<Ad[]> {
 // Function to fetch casinos ordered by rank
 export async function fetchCasinos(): Promise<Casino[]> {
   try {
-    // WordPress REST API doesn't support meta queries in orderby
-    // Fetch all casinos and sort them client-side
     const casinos = await fetchWithCache<Casino[]>(`${WP_API_URL}/casino`);
-    return casinos.sort((a, b) => (a.acf.rank || 0) - (b.acf.rank || 0));
+    return casinos
+      .map(c => ({
+        ...c,
+        acf: {
+          ...c.acf,
+          rank: c.acf?.rank || 0,
+          description: c.acf?.description || '',
+          affiliate_link: c.acf?.affiliate_link || '',
+        }
+      }))
+      .sort((a, b) => (a.acf.rank || 0) - (b.acf.rank || 0));
   } catch (error) {
     console.error("Failed to fetch casino list:", error);
     return [];
