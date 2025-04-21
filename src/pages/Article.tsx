@@ -1,0 +1,96 @@
+
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPostBySlug, fetchRelatedPosts } from "@/services/api";
+import Layout from "@/components/Layout";
+import AdSlot from "@/components/AdSlot";
+import SocialShare from "@/components/SocialShare";
+import RelatedPosts from "@/components/RelatedPosts";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const Article = () => {
+  const { slug } = useParams<{ slug: string }>();
+
+  const { data: post, isLoading: isLoadingPost } = useQuery({
+    queryKey: ["post", slug],
+    queryFn: () => fetchPostBySlug(slug || ""),
+  });
+
+  const { data: relatedPosts, isLoading: isLoadingRelated } = useQuery({
+    queryKey: ["relatedPosts", post?.id, post?.tags],
+    queryFn: () => (post?.id && post?.tags ? fetchRelatedPosts(post.tags, post.id) : []),
+    enabled: !!post?.id && !!post?.tags,
+  });
+
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  return (
+    <Layout>
+      <div className="max-w-4xl mx-auto">
+        {isLoadingPost ? (
+          <div className="space-y-4">
+            <Skeleton className="h-12 w-3/4 mx-auto" />
+            <Skeleton className="h-6 w-1/2 mx-auto" />
+            <Skeleton className="h-[400px] w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-4/5" />
+          </div>
+        ) : post ? (
+          <>
+            <article className="bg-white p-6 rounded-lg shadow-sm">
+              <h1 
+                className="text-3xl md:text-4xl font-bold text-center mb-4"
+                dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+              />
+              
+              {post._embedded?.author && (
+                <div className="text-center text-gray-600 mb-6">
+                  By {post._embedded.author[0].name} • 
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </div>
+              )}
+              
+              {post._embedded?.["wp:featuredmedia"] && (
+                <div className="mb-6">
+                  <img
+                    src={post._embedded["wp:featuredmedia"][0].source_url}
+                    alt={post._embedded["wp:featuredmedia"][0].alt_text || post.title.rendered}
+                    className="w-full h-auto rounded"
+                  />
+                </div>
+              )}
+              
+              <div className="prose max-w-none mb-8">
+                <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+              </div>
+              
+              <AdSlot placement="article_inline_1" className="my-8" />
+
+              <div dangerouslySetInnerHTML={{ __html: post.content.rendered.split('</p>')[0] + '</p>' }} />
+              
+              <AdSlot placement="article_inline_2" className="my-8" />
+              
+              <SocialShare title={post.title.rendered} url={currentUrl} />
+            </article>
+            
+            {!isLoadingRelated && relatedPosts && (
+              <RelatedPosts posts={relatedPosts} />
+            )}
+          </>
+        ) : (
+          <div className="text-center py-12">
+            <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
+            <p>The article you're looking for doesn't exist or has been removed.</p>
+          </div>
+        )}
+      </div>
+    </Layout>
+  );
+};
+
+export default Article;
