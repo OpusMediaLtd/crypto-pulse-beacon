@@ -43,9 +43,32 @@ export async function fetchRelatedPosts(tagIds: number[], currentPostId: number)
   return posts.filter(post => post.id !== currentPostId).slice(0, 3);
 }
 
-// Function to fetch ads by placement
+// Function to fetch all ads
+async function fetchAllAds(): Promise<Ad[]> {
+  return fetchWithCache<Ad[]>(`${WP_API_URL}/ad`);
+}
+
+// Function to fetch ads by placement with client-side filtering
 export async function fetchAdsByPlacement(placement: string): Promise<Ad[]> {
-  return fetchWithCache<Ad[]>(`${WP_API_URL}/ad?placement=${placement}`);
+  try {
+    const allAds = await fetchAllAds();
+    return allAds
+      .filter(ad => ad.acf?.placement === placement && ad.acf?.status === "active")
+      .map(ad => ({
+        ...ad,
+        acf: {
+          ...ad.acf,
+          image_url: ad.acf.image_url || '',
+          destination_url: ad.acf.destination_url || '',
+          placement: ad.acf.placement || '',
+          sort_order: ad.acf.sort_order || 0,
+          status: ad.acf.status || 'inactive'
+        }
+      }));
+  } catch (error) {
+    console.error(`Failed to fetch ads for placement ${placement}:`, error);
+    return [];
+  }
 }
 
 // Function to fetch casinos ordered by rank
