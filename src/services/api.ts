@@ -1,4 +1,3 @@
-
 import { WP_API_URL, CACHE_TTL } from "@/config/constants";
 import { Post, Ad, Casino, CryptoPrice } from "@/types";
 
