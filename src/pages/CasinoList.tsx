@@ -25,8 +25,8 @@ const CasinoList = () => {
           Top Ranked Crypto Casinos
         </h1>
         
-        <div className="mb-8">
-          <AdSlot placement="toplist_header" />
+        <div className="w-full mb-8">
+          <AdSlot placement="toplist_header" className="w-full" />
         </div>
         
         <p className="text-gray-600 dark:text-gray-300 mb-8">
@@ -55,4 +55,3 @@ const CasinoList = () => {
 };
 
 export default CasinoList;
-
