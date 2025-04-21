@@ -1,5 +1,9 @@
+
 import { WP_API_URL, CACHE_TTL } from "@/config/constants";
 import { Post, Ad, Casino, CryptoPrice } from "@/types";
+
+// Define base URL for ads to avoid using template literals that might cause issues
+const BASE_ADS = 'https://cryptopulsegg-10eda24.ingress-bonde.ewp.live/wp-json/wp/v2/ad';
 
 // Simple in-memory cache
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -43,9 +47,9 @@ export async function fetchRelatedPosts(tagIds: number[], currentPostId: number)
   return posts.filter(post => post.id !== currentPostId).slice(0, 3);
 }
 
-// Base function to fetch all ads
+// Base function to fetch all ads - now uses direct BASE_ADS URL
 async function fetchAllAds(): Promise<Ad[]> {
-  return fetchWithCache<Ad[]>(`${WP_API_URL}/ad`);
+  return fetchWithCache<Ad[]>(BASE_ADS);
 }
 
 // Function to fetch ads by placement with client-side filtering
