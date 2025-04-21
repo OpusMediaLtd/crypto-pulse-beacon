@@ -8,25 +8,25 @@ const NewsletterBar = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-purple-700 text-white py-2 px-4">
+    <div className="bg-primary/20 text-foreground py-2 px-4 border-b border-border/30">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="flex-1 text-center sm:text-left">
+        <div className="flex-1 text-center sm:text-left text-sm">
           <span className="mr-2">
             Subscribe to our monthly newsletter for crypto insights
           </span>
           <a 
             href="#newsletter-form" 
-            className="underline font-medium hover:text-purple-200 transition-colors"
+            className="text-primary font-medium hover:text-primary/80 transition-colors"
           >
             Sign up now
           </a>
         </div>
         <button 
           onClick={() => setIsVisible(false)}
-          className="text-white hover:text-purple-200 transition-colors"
+          className="text-foreground hover:text-primary transition-colors"
           aria-label="Close"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
       </div>
     </div>

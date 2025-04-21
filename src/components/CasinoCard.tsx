@@ -9,11 +9,11 @@ interface CasinoCardProps {
 
 const CasinoCard = ({ casino }: CasinoCardProps) => {
   return (
-    <Card className="border-l-4 border-l-purple-600 flex flex-col md:flex-row overflow-hidden">
-      <div className="flex items-center justify-center p-4 md:w-24 bg-gray-100">
-        <div className="text-3xl font-bold text-purple-700">#{casino.acf.rank}</div>
+    <Card className="border-l-4 border-l-primary flex flex-col md:flex-row overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
+      <div className="flex items-center justify-center p-4 md:w-24 bg-secondary/30">
+        <div className="text-3xl font-bold text-primary font-mono">#{casino.acf.rank}</div>
       </div>
-      <div className="md:w-1/4 p-4 flex items-center justify-center bg-white">
+      <div className="md:w-1/4 p-4 flex items-center justify-center bg-card">
         <img 
           src={casino.acf.image_url || "/placeholder.svg"} 
           alt={casino.acf.name} 
@@ -22,9 +22,9 @@ const CasinoCard = ({ casino }: CasinoCardProps) => {
       </div>
       <CardContent className="flex-1 p-4">
         <h3 className="text-xl font-bold mb-2">{casino.acf.name}</h3>
-        <p className="text-gray-700 mb-4 line-clamp-2">{casino.acf.description}</p>
+        <p className="text-muted-foreground mb-4 line-clamp-2">{casino.acf.description}</p>
         <Button 
-          className="bg-purple-600 hover:bg-purple-700"
+          className="bg-primary hover:bg-primary/80"
           onClick={() => window.open(casino.acf.affiliate_link, "_blank", "noopener,noreferrer")}
         >
           Visit Casino

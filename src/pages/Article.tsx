@@ -1,3 +1,4 @@
+
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPostBySlug, fetchRelatedPosts } from "@/services/api";
@@ -37,14 +38,14 @@ const Article = () => {
           </div>
         ) : post ? (
           <>
-            <article className="bg-white p-6 rounded-lg shadow-sm">
+            <article className="bg-card border border-border/30 p-6 rounded-lg shadow-sm">
               <h1 
                 className="text-3xl md:text-4xl font-bold text-center mb-4"
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
               
               {post._embedded?.author && (
-                <div className="text-center text-gray-600 mb-6">
+                <div className="text-center text-muted-foreground mb-6">
                   By {post._embedded.author[0].name} • 
                   {new Date(post.date).toLocaleDateString("en-US", {
                     year: "numeric",

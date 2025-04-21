@@ -21,7 +21,7 @@ const CasinoList = () => {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-4 text-purple-900 dark:text-purple-400">
+        <h1 className="text-3xl font-bold mb-4 border-l-4 border-primary pl-3">
           Top Ranked Crypto Casinos
         </h1>
         
@@ -29,7 +29,7 @@ const CasinoList = () => {
           <AdSlot placement="toplist_header" className="w-full" />
         </div>
         
-        <p className="text-gray-600 dark:text-gray-300 mb-8">
+        <p className="text-muted-foreground mb-8">
           Discover our curated selection of the best cryptocurrency-friendly casinos, 
           carefully ranked and reviewed by our experts.
         </p>
@@ -44,7 +44,7 @@ const CasinoList = () => {
               <CasinoCard key={casino.id} casino={casino} />
             ))
           ) : (
-            <p className="text-center py-8 text-gray-500 dark:text-gray-400">
+            <p className="text-center py-8 text-muted-foreground">
               No casinos found. Check back soon for updates.
             </p>
           )}
