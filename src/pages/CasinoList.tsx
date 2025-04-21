@@ -21,7 +21,7 @@ const CasinoList = () => {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-4 text-purple-900">
+        <h1 className="text-3xl font-bold mb-4 text-purple-900 dark:text-purple-400">
           Top Ranked Crypto Casinos
         </h1>
         
@@ -44,7 +44,7 @@ const CasinoList = () => {
               <CasinoCard key={casino.id} casino={casino} />
             ))
           ) : (
-            <p className="text-center py-8 text-gray-500">
+            <p className="text-center py-8 text-gray-500 dark:text-gray-400">
               No casinos found. Check back soon for updates.
             </p>
           )}
@@ -55,4 +55,3 @@ const CasinoList = () => {
 };
 
 export default CasinoList;
-

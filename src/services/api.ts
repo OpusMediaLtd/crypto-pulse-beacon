@@ -50,21 +50,31 @@ export async function fetchAdsByPlacement(placement: string): Promise<Ad[]> {
 
 // Function to fetch casinos ordered by rank
 export async function fetchCasinos(): Promise<Casino[]> {
-  // WordPress REST API doesn't support meta queries in orderby
-  // Fetch all casinos and sort them client-side
-  const casinos = await fetchWithCache<Casino[]>(`${WP_API_URL}/casino`);
-  return casinos.sort((a, b) => (a.acf.rank || 0) - (b.acf.rank || 0));
+  try {
+    // WordPress REST API doesn't support meta queries in orderby
+    // Fetch all casinos and sort them client-side
+    const casinos = await fetchWithCache<Casino[]>(`${WP_API_URL}/casino`);
+    return casinos.sort((a, b) => (a.acf.rank || 0) - (b.acf.rank || 0));
+  } catch (error) {
+    console.error("Failed to fetch casino list:", error);
+    return [];
+  }
 }
 
 // Function to fetch a single casino by slug
 export async function fetchCasinoBySlug(slug: string): Promise<Casino | null> {
-  const response = await fetch(`${WP_API_URL}/casino?slug=${slug}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch casino: ${response.statusText}`);
+  try {
+    const response = await fetch(`${WP_API_URL}/casino?slug=${slug}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch casino: ${response.statusText}`);
+    }
+    
+    const casinos = await response.json();
+    return casinos.length > 0 ? casinos[0] : null;
+  } catch (error) {
+    console.error(`Failed to fetch casino by slug ${slug}:`, error);
+    return null;
   }
-  
-  const casinos = await response.json();
-  return casinos.length > 0 ? casinos[0] : null;
 }
 
 // Function to fetch crypto prices from CoinGecko
