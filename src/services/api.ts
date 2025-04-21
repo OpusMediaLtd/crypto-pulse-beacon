@@ -1,4 +1,3 @@
-
 import { WP_API_URL, CACHE_TTL } from "@/config/constants";
 import { Post, Ad, Casino, CryptoPrice } from "@/types";
 
@@ -54,7 +53,7 @@ export async function fetchAdsByPlacement(placement: string): Promise<Ad[]> {
   try {
     const allAds = await fetchAllAds();
     return allAds
-      .filter(ad => ad.acf?.placement === placement && ad.acf?.status === "active")
+      .filter(ad => ad.acf?.placement === placement)
       .map(ad => ({
         ...ad,
         acf: {
@@ -63,7 +62,6 @@ export async function fetchAdsByPlacement(placement: string): Promise<Ad[]> {
           destination_url: ad.acf.destination_url || '',
           placement: ad.acf.placement || '',
           sort_order: ad.acf.sort_order || 0,
-          status: ad.acf.status || 'inactive'
         }
       }));
   } catch (error) {
