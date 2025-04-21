@@ -1,4 +1,3 @@
-
 import { WP_API_URL, CACHE_TTL } from "@/config/constants";
 import { Post, Ad, Casino, CryptoPrice } from "@/types";
 
@@ -51,7 +50,9 @@ export async function fetchAdsByPlacement(placement: string): Promise<Ad[]> {
 
 // Function to fetch casinos ordered by rank
 export async function fetchCasinos(): Promise<Casino[]> {
-  return fetchWithCache<Casino[]>(`${WP_API_URL}/casino?orderby=meta_value_num&meta_key=rank`);
+  return fetchWithCache<Casino[]>(
+    `${WP_API_URL}/casino?orderby=meta_value_num&meta_key=rank&order=asc`
+  );
 }
 
 // Function to fetch a single casino by slug

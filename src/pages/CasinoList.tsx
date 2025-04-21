@@ -5,24 +5,33 @@ import Layout from "@/components/Layout";
 import CasinoCard from "@/components/CasinoCard";
 import AdSlot from "@/components/AdSlot";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "sonner";
 
 const CasinoList = () => {
-  const { data: casinos, isLoading } = useQuery({
+  const { data: casinos, isLoading, error } = useQuery({
     queryKey: ["casinos"],
     queryFn: fetchCasinos,
   });
 
+  if (error) {
+    toast.error("Failed to load casino list. Please try again later.");
+  }
+
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">Top Ranked Casinos</h1>
-        <p className="text-gray-600 mb-8">
-          Discover our curated list of the best crypto casinos, ranked by our experts.
-        </p>
+      <div className="max-w-4xl mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-4 text-purple-900">
+          Top Ranked Crypto Casinos
+        </h1>
         
         <div className="mb-8">
           <AdSlot placement="toplist_header" />
         </div>
+        
+        <p className="text-gray-600 dark:text-gray-300 mb-8">
+          Discover our curated selection of the best cryptocurrency-friendly casinos, 
+          carefully ranked and reviewed by our experts.
+        </p>
         
         <div className="space-y-6">
           {isLoading ? (
@@ -34,7 +43,9 @@ const CasinoList = () => {
               <CasinoCard key={casino.id} casino={casino} />
             ))
           ) : (
-            <p>No casinos found.</p>
+            <p className="text-center py-8 text-gray-500">
+              No casinos found. Check back soon for updates.
+            </p>
           )}
         </div>
       </div>
