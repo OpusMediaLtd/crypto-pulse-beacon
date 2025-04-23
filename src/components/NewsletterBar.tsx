@@ -9,8 +9,8 @@ const NewsletterBar = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-primary/5 border-b border-border w-full">
-      <div className="container mx-auto flex justify-between items-center py-3 px-4 w-full">
+    <div className="bg-secondary/5 border-b border-border w-full">
+      <div className="container mx-auto flex justify-between items-center py-3 px-4 w-full rounded-b-lg">
         <div className="flex-1 flex items-center justify-center sm:justify-start gap-3">
           <p className="text-sm text-foreground/90">
             Get monthly crypto insights in your inbox
