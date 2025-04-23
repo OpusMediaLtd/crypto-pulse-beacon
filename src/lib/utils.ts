@@ -14,3 +14,9 @@ export function formatDate(dateString: string): string {
     year: 'numeric'
   });
 }
+
+// Truncate text with ellipsis
+export function truncate(text: string, length: number): string {
+  if (text.length <= length) return text;
+  return text.slice(0, length) + '...';
+}

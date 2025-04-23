@@ -11,8 +11,8 @@ const ThumbnailCard: React.FC<ThumbnailCardProps> = ({ post }) => {
   const imageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/placeholder.svg';
   
   return (
-    <Link to={`/posts/${post.slug}`} className="thumbnail-card flex gap-3 mb-4 group">
-      <div className="w-16 h-16 flex-shrink-0 overflow-hidden rounded">
+    <Link to={`/posts/${post.slug}`} className="thumbnail-card group mb-3">
+      <div className="w-14 h-14 flex-shrink-0 overflow-hidden rounded">
         <img 
           src={imageUrl} 
           alt={post.title.rendered} 

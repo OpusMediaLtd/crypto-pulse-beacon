@@ -28,32 +28,30 @@ const Home = () => {
 
   return (
     <Layout>
-      <div className="mb-8">
+      <div className="mb-6">
         <AdSlot placement="home_header" className="max-w-full mx-auto" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="home-grid">
         {/* Left Column: Latest News */}
-        <div className="lg:col-span-3">
-          <div className="mb-6 border-b border-border/30 pb-2">
-            <h2 className="text-xl font-bold border-l-4 border-primary pl-3">Latest Crypto News</h2>
+        <div className="home-sidebar">
+          <div className="section-header">
+            <h2 className="section-title">Latest News</h2>
           </div>
           
           {loadingNews ? (
             <div className="space-y-4">
               {Array(5).fill(0).map((_, i) => (
-                <div key={i} className="flex items-center space-x-2">
-                  <div className="flex-1 space-y-2">
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-3 w-2/3" />
-                  </div>
+                <div key={i} className="flex flex-col space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-3 w-2/3" />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 divide-y divide-border/30">
               {latestNews?.map((post) => (
-                <div key={post.id} className="group">
+                <div key={post.id} className="group pt-4 first:pt-0">
                   <Link to={`/posts/${post.slug}`} className="block">
                     <h3 
                       className="text-base font-medium group-hover:text-primary transition-colors" 
@@ -68,17 +66,17 @@ const Home = () => {
         </div>
 
         {/* Middle Column: Spotlight */}
-        <div className="lg:col-span-6">
-          <div className="mb-6 border-b border-border/30 pb-2">
-            <h2 className="text-xl font-bold border-l-4 border-primary pl-3">Crypto News Spotlight</h2>
+        <div className="home-main">
+          <div className="section-header">
+            <h2 className="section-title">News Spotlight</h2>
           </div>
           
           {loadingSpotlight ? (
-            <div className="space-y-8">
-              <Skeleton className="h-[300px] w-full" />
+            <div className="space-y-6">
+              <Skeleton className="h-[300px] w-full rounded-lg" />
               <div className="grid grid-cols-2 gap-4">
-                <Skeleton className="h-24 w-full" />
-                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full rounded-lg" />
+                <Skeleton className="h-24 w-full rounded-lg" />
               </div>
             </div>
           ) : (
@@ -86,7 +84,7 @@ const Home = () => {
               {spotlight && spotlight.length > 0 && (
                 <>
                   <FeaturedCard post={spotlight[0]} />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {spotlight.slice(1, 3).map((post) => (
                       <SmallCard key={post.id} post={post} />
                     ))}
@@ -98,34 +96,34 @@ const Home = () => {
         </div>
 
         {/* Right Column: Deep Dives & Ad */}
-        <div className="lg:col-span-3">
-          <div className="mb-6 border-b border-border/30 pb-2">
-            <h2 className="text-xl font-bold border-l-4 border-primary pl-3">Deep Dives</h2>
+        <div className="home-sidebar">
+          <div className="section-header">
+            <h2 className="section-title">Deep Dives</h2>
           </div>
           
           {loadingDeepDives ? (
             <div className="space-y-4">
               {Array(3).fill(0).map((_, i) => (
                 <div key={i} className="flex gap-2">
-                  <Skeleton className="h-16 w-16" />
+                  <Skeleton className="h-14 w-14 rounded" />
                   <div className="flex-1">
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-full mt-1" />
+                    <Skeleton className="h-3 w-full" />
+                    <Skeleton className="h-3 w-full mt-1" />
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {deepDives?.map((post) => (
                 <ThumbnailCard key={post.id} post={post} />
               ))}
             </div>
           )}
 
-          <div className="mt-8 bg-secondary/20 p-4 rounded-lg border border-border/30">
-            <h2 className="text-lg font-bold mb-4 text-foreground">Sponsored</h2>
-            <div className="space-y-6">
+          <div className="mt-6 bg-card p-4 rounded-lg border border-border/30">
+            <h2 className="text-base font-medium mb-4 text-foreground">Sponsored</h2>
+            <div className="space-y-4">
               <AdSlot placement="sidebar" />
               <AdSlot placement="sidebar" />
             </div>

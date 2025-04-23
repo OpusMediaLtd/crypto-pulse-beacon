@@ -6,24 +6,24 @@ import { Search } from "lucide-react";
 
 const Header = () => {
   return (
-    <header className="bg-card border-b border-border">
-      <div className="container mx-auto px-4">
+    <header className="border-b border-border sticky top-0 z-10 bg-background/95 backdrop-blur-sm">
+      <div className="container mx-auto">
         <NewsletterBar />
-        <div className="py-5 flex flex-col md:flex-row justify-between items-center">
-          <Link to="/" className="text-3xl font-bold mb-4 md:mb-0 text-primary">
-            <span className="font-mono tracking-tight">Crypto</span>
+        <div className="py-4 flex flex-col md:flex-row justify-between items-center">
+          <Link to="/" className="text-2xl font-bold mb-3 md:mb-0">
+            <span className="text-primary font-mono tracking-tight">Crypto</span>
             <span>pulse</span>
           </Link>
-          <div className="flex items-center gap-6">
-            <div className="relative hidden md:block">
+          <div className="flex items-center gap-5">
+            <div className="relative">
               <input 
                 type="text" 
                 placeholder="Search..." 
-                className="bg-secondary/50 text-foreground border border-border/50 rounded-full py-2 pl-10 pr-4 w-[200px] focus:outline-none focus:ring-1 focus:ring-primary"
+                className="bg-background border border-border rounded-full py-1.5 pl-9 pr-4 w-[200px] text-sm focus:outline-none focus:ring-1 focus:ring-primary"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
             </div>
-            <nav className="flex space-x-6 text-sm font-medium">
+            <nav className="space-x-5 text-sm font-medium">
               <Link to="/" className="text-foreground hover:text-primary transition-colors">
                 Home
               </Link>
@@ -33,7 +33,7 @@ const Header = () => {
             </nav>
           </div>
         </div>
-        <div className="py-2 overflow-hidden bg-secondary/30 rounded-md">
+        <div className="py-2 overflow-hidden rounded border border-border/30 mb-4">
           <PriceTicker />
         </div>
       </div>

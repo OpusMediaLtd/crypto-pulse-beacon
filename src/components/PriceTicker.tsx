@@ -21,16 +21,16 @@ const PriceTicker = () => {
   }
 
   return (
-    <div className="flex gap-6 overflow-x-auto whitespace-nowrap py-2 ticker">
+    <div className="flex gap-6 overflow-x-auto whitespace-nowrap py-2 ticker px-2">
       {prices.map((coin) => (
         <div key={coin.id} className="flex items-center">
-          <span className="font-medium mr-2 font-mono">{coin.symbol.toUpperCase()}</span>
-          <span className="font-mono">${coin.current_price.toLocaleString()}</span>
+          <span className="font-medium mr-2 font-mono text-sm">{coin.symbol.toUpperCase()}</span>
+          <span className="font-mono text-sm">${coin.current_price.toLocaleString()}</span>
           <span 
             className={`ml-2 text-xs flex items-center ${
               coin.price_change_percentage_24h >= 0 
-                ? "text-green-400" 
-                : "text-red-400"
+                ? "text-green-500" 
+                : "text-red-500"
             }`}
           >
             {coin.price_change_percentage_24h >= 0 ? (
