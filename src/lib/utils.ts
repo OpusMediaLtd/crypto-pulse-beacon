@@ -20,3 +20,16 @@ export function truncate(text: string, length: number): string {
   if (text.length <= length) return text;
   return text.slice(0, length) + '...';
 }
+
+// Extract plain text from HTML content
+export function stripHtml(html: string): string {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || '';
+}
+
+// Estimate reading time
+export function getReadingTime(content: string): number {
+  const wordCount = content.split(/\s+/).length;
+  const readingTimeMinutes = Math.ceil(wordCount / 200); // Average 200 words per minute
+  return readingTimeMinutes;
+}
