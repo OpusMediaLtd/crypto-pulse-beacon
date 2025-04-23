@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { fetchLatestNews, fetchSpotlight, fetchDeepDives } from "@/services/api";
 import Layout from "@/components/Layout";
@@ -61,7 +62,7 @@ const Home = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left Column: Latest News */}
+          {/* Left Column: Latest News & Ad */}
           <div className="lg:col-span-3">
             <div className="section-header">
               <h2 className="section-title">Latest News</h2>
@@ -91,6 +92,12 @@ const Home = () => {
                 ))}
               </div>
             )}
+
+            {/* Add an Ad Slot to the Left Column */}
+            <div className="mt-6 bg-card p-4 rounded-lg border border-border/30">
+              <h2 className="text-base font-medium mb-4 text-foreground">Sponsored</h2>
+              <AdSlot placement="left_column" />
+            </div>
           </div>
 
           {/* Middle Column: Spotlight */}
@@ -152,7 +159,6 @@ const Home = () => {
             <div className="mt-8 bg-card p-4 rounded-lg border border-border/30">
               <h2 className="text-base font-medium mb-4 text-foreground">Sponsored</h2>
               <div className="space-y-4">
-                <AdSlot placement="sidebar" />
                 <AdSlot placement="sidebar" />
               </div>
             </div>
