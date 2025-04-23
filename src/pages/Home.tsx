@@ -64,8 +64,11 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Column: Latest News & Ad */}
           <div className="lg:col-span-3">
-            <div className="section-header">
-              <h2 className="section-title">Latest News</h2>
+            <div className="section-header border-none mb-6">
+              <h2 className="text-xl font-bold flex items-center">
+                <span className="inline-block w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                Latest Crypto News
+              </h2>
             </div>
             
             {loadingNews ? (
@@ -78,23 +81,40 @@ const Home = () => {
                 ))}
               </div>
             ) : (
-              <div className="space-y-0">
+              <div className="space-y-4">
                 {latestNews?.map((post) => (
-                  <div key={post.id} className="border-b border-border/30 py-3 last:border-0">
-                    <Link to={`/posts/${post.slug}`} className="block group">
+                  <Link 
+                    key={post.id} 
+                    to={`/posts/${post.slug}`} 
+                    className="flex gap-3 group"
+                  >
+                    <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
+                      <img
+                        src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/placeholder.svg'}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 text-xs text-primary mb-1">
+                        <span>Bitcoin</span>
+                        <span>•</span>
+                        <time className="text-muted-foreground">
+                          {formatDate(post.date)}
+                        </time>
+                      </div>
                       <h3 
-                        className="text-base font-medium group-hover:text-primary transition-colors" 
+                        className="text-sm font-medium leading-tight group-hover:text-primary transition-colors"
                         dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                       />
-                    </Link>
-                    <time className="text-xs text-muted-foreground block mt-1">{formatDate(post.date)}</time>
-                  </div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             )}
 
             {/* Add an Ad Slot to the Left Column */}
-            <div className="mt-6 bg-card p-4 rounded-lg border border-border/30">
+            <div className="mt-8 bg-card p-4 rounded-lg border border-border/30">
               <h2 className="text-base font-medium mb-4 text-foreground">Sponsored</h2>
               <AdSlot placement="left_column" />
             </div>
