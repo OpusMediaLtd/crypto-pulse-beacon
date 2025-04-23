@@ -4,6 +4,9 @@ import { Post, Ad, Casino, CryptoPrice } from "@/types";
 
 // Define base URL for ads to avoid using template literals that might cause issues
 const BASE_ADS = 'https://cryptopulsegg-10eda24.ingress-bonde.ewp.live/wp-json/wp/v2/ad';
+const BASE = 'https://cryptopulsegg-10eda24.ingress-bonde.ewp.live/wp-json/wp/v2';
+const spotlightTagId = 6;
+const deepDiveTagId = 5;
 
 // Simple in-memory cache
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -31,6 +34,21 @@ async function fetchWithCache<T>(url: string): Promise<T> {
 // Function to fetch posts
 export async function fetchPosts(): Promise<Post[]> {
   return fetchWithCache<Post[]>(`${WP_API_URL}/posts?_embed`);
+}
+
+// Function to fetch latest news (excluding spotlight and deep dive tags)
+export async function fetchLatestNews(): Promise<Post[]> {
+  return fetchWithCache<Post[]>(`${BASE}/posts?per_page=5&exclude_tags[]=${spotlightTagId}&exclude_tags[]=${deepDiveTagId}&_embed`);
+}
+
+// Function to fetch spotlight posts (tag 6)
+export async function fetchSpotlight(): Promise<Post[]> {
+  return fetchWithCache<Post[]>(`${BASE}/posts?tags=${spotlightTagId}&per_page=3&orderby=date&order=desc&_embed`);
+}
+
+// Function to fetch deep dive posts (tag 5)
+export async function fetchDeepDives(): Promise<Post[]> {
+  return fetchWithCache<Post[]>(`${BASE}/posts?tags=${deepDiveTagId}&per_page=3&orderby=date&order=desc&_embed`);
 }
 
 // Function to fetch a single post by slug
