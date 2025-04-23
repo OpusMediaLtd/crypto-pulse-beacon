@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { X } from "lucide-react";
+import { Button } from "./ui/button";
 
 const NewsletterBar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -8,25 +9,28 @@ const NewsletterBar = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-primary/10 py-2 px-4 border-b border-border/30">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex-1 text-center sm:text-left text-sm">
-          <span className="mr-2">
-            Get monthly crypto insights
-          </span>
-          <a 
-            href="#newsletter-form" 
-            className="text-primary font-medium hover:text-primary/80 transition-colors"
+    <div className="bg-primary/5 border-b border-border">
+      <div className="container mx-auto flex justify-between items-center py-3 px-4">
+        <div className="flex-1 flex items-center justify-center sm:justify-start gap-3">
+          <p className="text-sm text-foreground/90">
+            Get monthly crypto insights in your inbox
+          </p>
+          <Button 
+            variant="link" 
+            className="text-primary font-medium p-0 h-auto hover:no-underline"
+            asChild
           >
-            Subscribe now
-          </a>
+            <a href="#newsletter-form">
+              Subscribe now
+            </a>
+          </Button>
         </div>
         <button 
           onClick={() => setIsVisible(false)}
-          className="text-foreground/70 hover:text-primary transition-colors p-1"
-          aria-label="Close"
+          className="text-foreground/50 hover:text-foreground/70 transition-colors p-1.5 hover:bg-primary/5 rounded-full"
+          aria-label="Close newsletter banner"
         >
-          <X size={16} />
+          <X size={14} />
         </button>
       </div>
     </div>
