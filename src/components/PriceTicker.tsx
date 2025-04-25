@@ -2,8 +2,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchCryptoPrices } from "@/services/api";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const PriceTicker = () => {
+  const isMobile = useIsMobile();
   const { data: prices, isLoading } = useQuery({
     queryKey: ["cryptoPrices"],
     queryFn: fetchCryptoPrices,
@@ -23,9 +25,12 @@ const PriceTicker = () => {
   // Duplicate the prices array for seamless looping
   const duplicatedPrices = [...prices, ...prices];
 
+  // Use different animation speeds based on screen size
+  const animationClass = isMobile ? "animate-ticker-slow" : "animate-ticker";
+
   return (
     <div className="overflow-hidden whitespace-nowrap">
-      <div className="inline-flex animate-ticker gap-6">
+      <div className={`inline-flex ${animationClass} gap-6`}>
         {duplicatedPrices.map((coin, index) => (
           <div key={`${coin.id}-${index}`} className="flex items-center shrink-0">
             <span className="font-medium mr-2 font-mono text-sm">{coin.symbol.toUpperCase()}</span>

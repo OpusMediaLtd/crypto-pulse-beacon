@@ -109,7 +109,9 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'ticker': 'ticker 30s linear infinite'
+				'ticker': 'ticker 30s linear infinite',
+				'ticker-slow': 'ticker 60s linear infinite',  // Slower variant for narrow screens
+				'ticker-fast': 'ticker 20s linear infinite',  // Faster variant for wider screens
 			}
 		}
 	},
