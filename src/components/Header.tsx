@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import PriceTicker from "./PriceTicker";
 import NewsletterBar from "./NewsletterBar";
@@ -11,8 +10,7 @@ const Header = () => {
         <NewsletterBar />
         <div className="py-4 flex flex-col md:flex-row justify-between items-center">
           <Link to="/" className="text-2xl font-bold mb-3 md:mb-0">
-            <span className="text-primary font-mono tracking-tight">Crypto</span>
-            <span>pulse</span>
+            <img src="/cryptopulse-logo.svg" alt="Cryptopulse" className="h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-5">
             <div className="relative">
