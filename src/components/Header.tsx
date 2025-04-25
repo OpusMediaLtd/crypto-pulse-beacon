@@ -10,7 +10,7 @@ const Header = () => {
         <NewsletterBar />
         <div className="py-4 flex flex-col md:flex-row justify-between items-center">
           <Link to="/" className="text-2xl font-bold mb-3 md:mb-0">
-            <img src="/cryptopulse-logo.svg" alt="Cryptopulse" className="h-8 w-auto" />
+            <img src="/cryptopulse-logo.svg" alt="Cryptopulse" className="h-6 md:h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-5">
             <div className="relative">
