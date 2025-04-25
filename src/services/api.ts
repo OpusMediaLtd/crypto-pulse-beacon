@@ -133,11 +133,12 @@ export async function fetchCasinoBySlug(slug: string): Promise<Casino | null> {
 export async function fetchCryptoPrices(): Promise<CryptoPrice[]> {
   const url = "https://api.coingecko.com/api/v3/coins/markets" +
     "?vs_currency=usd" +
-    "&ids=bitcoin,ethereum,binancecoin,solana,cardano" +
     "&order=market_cap_desc" +
-    "&per_page=5&page=1" +
+    "&per_page=30" + // Increased to 30 cryptocurrencies
+    "&page=1" +
     "&sparkline=false" +
     "&price_change_percentage=24h";
 
   return fetchWithCache<CryptoPrice[]>(url);
 }
+
