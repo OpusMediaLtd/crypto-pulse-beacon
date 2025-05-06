@@ -9,12 +9,12 @@ const Header = () => {
     <header className="border-b border-border sticky top-0 z-10 bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto">
         <NewsletterBar />
-        <div className="py-4 flex flex-col md:flex-row justify-between items-center">
-          <Link to="/" className="text-2xl font-bold mb-3 md:mb-0">
+        <div className="py-6 flex flex-col md:flex-row justify-between items-center">
+          <Link to="/" className="text-2xl font-bold mb-3 md:mb-0 px-3">
             <img 
               src="/cryptopulse-logo.svg" 
               alt="Cryptopulse" 
-              className="h-8 md:h-12 w-auto" 
+              className="h-6 md:h-10 w-auto" 
             />
           </Link>
           <div className="flex items-center gap-5">
