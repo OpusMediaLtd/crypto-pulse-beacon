@@ -26,7 +26,7 @@ const PriceTicker = () => {
   const duplicatedPrices = [...prices, ...prices];
 
   // Use ultra-slow and very-slow animation speeds for an extremely comfortable reading experience
-  const animationClass = isMobile ? "animate-ultra-slow" : "animate-ticker-very-slow";
+  const animationClass = isMobile ? "animate-ticker-ultra-slow" : "animate-ticker-very-slow";
 
   return (
     <div className="overflow-hidden whitespace-nowrap">
@@ -54,3 +54,6 @@ const PriceTicker = () => {
       </div>
     </div>
   );
+};
+
+export default PriceTicker;
