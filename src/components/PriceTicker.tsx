@@ -22,8 +22,8 @@ const PriceTicker = () => {
     );
   }
 
-  // Duplicate the prices array for seamless looping
-  const duplicatedPrices = [...prices, ...prices];
+  // Create multiple duplicates to ensure continuous flow without gaps
+  const duplicatedPrices = [...prices, ...prices, ...prices, ...prices];
 
   // Use ultra-slow and very-slow animation speeds for an extremely comfortable reading experience
   const animationClass = isMobile ? "animate-ticker-ultra-slow" : "animate-ticker-very-slow";
