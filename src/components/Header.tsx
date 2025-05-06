@@ -10,11 +10,11 @@ const Header = () => {
       <div className="container mx-auto">
         <NewsletterBar />
         <div className="py-6 flex flex-col md:flex-row justify-between items-center">
-          <Link to="/" className="text-2xl font-bold mb-3 md:mb-0 px-4">
+          <Link to="/" className="text-2xl font-bold mb-3 md:mb-0 px-4 md:px-0">
             <img 
               src="/cryptopulse-logo.svg" 
               alt="Cryptopulse" 
-              className="h-6 md:h-10 w-auto mx-auto" 
+              className="h-6 md:h-10 w-auto mx-auto md:mx-0" 
             />
           </Link>
           <div className="flex items-center gap-5">
