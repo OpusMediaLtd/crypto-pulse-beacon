@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Post } from "@/types";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import LazyImage from "./LazyImage";
 
 interface ArticleCardProps {
   post: Post;
@@ -20,7 +21,7 @@ const ArticleCard = ({ post, featured = false }: ArticleCardProps) => {
   return (
     <Card className={`overflow-hidden h-full border-border/30 crypto-card ${featured ? "md:col-span-2" : ""}`}>
       <div className={`relative ${featured ? "aspect-[16/9]" : "aspect-[3/2]"}`}>
-        <img
+        <LazyImage
           src={featuredImage}
           alt={post.title.rendered}
           className="object-cover w-full h-full"

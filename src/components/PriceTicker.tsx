@@ -3,13 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCryptoPrices } from "@/services/api";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { memo } from "react";
 
-const PriceTicker = () => {
+// Memoize the component to prevent unnecessary re-renders
+const PriceTicker = memo(() => {
   const isMobile = useIsMobile();
   const { data: prices, isLoading } = useQuery({
     queryKey: ["cryptoPrices"],
     queryFn: fetchCryptoPrices,
     refetchInterval: 60000, // Refetch every minute
+    staleTime: 45000, // Consider data fresh for 45 seconds
   });
 
   if (isLoading || !prices) {
@@ -22,8 +25,9 @@ const PriceTicker = () => {
     );
   }
 
-  // Create multiple duplicates to ensure continuous flow without gaps
-  const duplicatedPrices = [...prices, ...prices, ...prices, ...prices];
+  // Use just enough duplicates to ensure continuous flow
+  // Fewer duplicates = better performance
+  const duplicatedPrices = [...prices, ...prices, ...prices];
 
   // Use ultra-slow and very-slow animation speeds for an extremely comfortable reading experience
   const animationClass = isMobile ? "animate-ticker-ultra-slow" : "animate-ticker-very-slow";
@@ -54,6 +58,6 @@ const PriceTicker = () => {
       </div>
     </div>
   );
-};
+});
 
 export default PriceTicker;
