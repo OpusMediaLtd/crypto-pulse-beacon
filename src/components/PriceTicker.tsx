@@ -25,8 +25,8 @@ const PriceTicker = () => {
   // Duplicate the prices array for seamless looping
   const duplicatedPrices = [...prices, ...prices];
 
-  // Use even slower animation speeds for a more comfortable reading experience
-  const animationClass = isMobile ? "animate-ticker-very-slow" : "animate-ticker-slow";
+  // Use ultra-slow and very-slow animation speeds for an extremely comfortable reading experience
+  const animationClass = isMobile ? "animate-ultra-slow" : "animate-ticker-very-slow";
 
   return (
     <div className="overflow-hidden whitespace-nowrap">
@@ -54,6 +54,3 @@ const PriceTicker = () => {
       </div>
     </div>
   );
-};
-
-export default PriceTicker;

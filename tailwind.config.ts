@@ -110,8 +110,9 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'ticker': 'ticker 30s linear infinite',
-				'ticker-slow': 'ticker 90s linear infinite',  // Slower variant (was 60s)
-				'ticker-very-slow': 'ticker 120s linear infinite',  // Very slow variant (new)
+				'ticker-slow': 'ticker 120s linear infinite',  // Even slower (was 90s)
+				'ticker-very-slow': 'ticker 180s linear infinite',  // Super slow variant (was 120s)
+				'ticker-ultra-slow': 'ticker 240s linear infinite',  // Ultra slow variant (new)
 				'ticker-fast': 'ticker 20s linear infinite',  // Faster variant for wider screens
 			}
 		}
