@@ -14,7 +14,7 @@ const Header = () => {
             <img 
               src="/cryptopulse-logo.svg" 
               alt="Cryptopulse" 
-              className="h-12 md:h-16 w-auto" 
+              className="h-8 md:h-12 w-auto" 
             />
           </Link>
           <div className="flex items-center gap-5">
